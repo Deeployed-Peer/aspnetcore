@@ -405,7 +405,12 @@ internal sealed partial class UnixCertificateManager : CertificateManager
                 hasValidSslCertDir = false;
             }
 
-            sawTrustFailure = !hasValidSslCertDir;
+            // Only set trust failure if we don't have a valid SSL_CERT_DIR configuration
+            // Note: This doesn't override NSS trust failures that may have occurred earlier
+            if (!hasValidSslCertDir)
+            {
+                sawTrustFailure = true;
+            }
         }
 
         return sawTrustFailure
