@@ -35,13 +35,13 @@ public class AccessTokenNotAvailableException : Exception
     /// </summary>
     public void Redirect()
     {
-        if (_tokenResult.InteractionOptions != null)
+        if (_tokenResult.InteractionOptions != null && _tokenResult.InteractiveRequestUrl != null)
         {
             _navigation.NavigateToLogin(_tokenResult.InteractiveRequestUrl, _tokenResult.InteractionOptions);
         }
         else
         {
-            _navigation.NavigateTo(_tokenResult.InteractiveRequestUrl!);
+            _navigation.NavigateTo(_tokenResult.InteractiveRequestUrl);
         }
     }
 
