@@ -51,7 +51,7 @@ public abstract class WebRenderer : Renderer
     /// </summary>
     protected int RendererId
     {
-        get => _rendererId;
+        get => _rendererId = GetWebRendererId();
     }
 
     /// <summary>
