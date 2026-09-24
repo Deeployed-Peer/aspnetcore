@@ -115,7 +115,6 @@ class DynamicRootComponent {
     }
   }
 }
-
 // Called by the framework
 export function enableJSRootComponents(
   rendererId: number,
@@ -123,7 +122,7 @@ export function enableJSRootComponents(
   jsComponentParameters: JSComponentParametersByIdentifier,
   jsComponentInitializers: JSComponentIdentifiersByInitializer
 ): void {
-  if (manager && currentRendererId === rendererId) {
+  if (manager && currentRendererId !== rendererId) {
     // A different renderer type (e.g., Server vs WebAssembly) is trying to enable JS root components.
     // This is a multi-host scenario which is not supported for dynamic root components.
     throw new Error('Dynamic root components have already been enabled.');
